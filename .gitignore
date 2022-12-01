@@ -1,0 +1,14 @@
+!.yarn
+!.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins/*
+!.yarn/sdks
+!.yarn/versions
+.yarn/install-state.gz
+
+node_modules
+
+13-3d-text/
+ 26-code-structuring-for-bigger-projects/
