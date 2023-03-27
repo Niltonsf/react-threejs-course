@@ -7,11 +7,12 @@ const root = ReactDOM.createRoot(document.querySelector("#root"));
 
 root.render(
   <Canvas
+    eventSource={document.getElementById("root")}
     camera={{
       fov: 45,
       near: 0.1,
       far: 2000,
-      position: [-3, 1.5, 4],
+      position: [0, 2.5, 2],
     }}
   >
     <Experience />

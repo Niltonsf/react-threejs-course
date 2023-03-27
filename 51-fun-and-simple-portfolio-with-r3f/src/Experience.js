@@ -1,3 +1,4 @@
+import MainWebpage from "./main.js";
 import {
   OrbitControls,
   Environment,
@@ -8,10 +9,18 @@ import {
   Html,
   Text,
 } from "@react-three/drei";
-import CustomIframe from "./CustomIframe";
+import { useThree } from "@react-three/fiber";
+import { useEffect, useRef } from "react";
 
 export default function Experience() {
   const model = useGLTF("./model.gltf");
+  const screen = useRef();
+
+  const { camera } = useThree();
+
+  useEffect(() => {
+    camera.lookAt(screen.current.position);
+  }, []);
 
   return (
     <>
@@ -19,49 +28,29 @@ export default function Experience() {
 
       <Environment preset="city" />
 
-      <PresentationControls
-        global
-        rotation={[0.13, 0.1, 0]}
-        polar={[-0.4, 0.2]}
-        azimuth={[-1, 0.75]}
-        config={{ mass: 2, tension: 400 }}
-        snap={{ mass: 4, tension: 400 }}
-      >
-        <Float rotationIntensity={0.4}>
-          <rectAreaLight
-            width={2.5}
-            height={1.65}
-            intensity={25}
-            color={"#ff6900"}
-            rotation={[-0.1, Math.PI, 0]}
-            position={[0, 0.55, -1.15]}
-          />
-          <primitive object={model.scene} position-y={-1.2}>
-            <Html
-              transform
-              wrapperClass="htmlScreen"
-              distanceFactor={1.17}
-              position={[0, 1.56, -1.4]}
-              rotation-x={-0.256}
-            >
-              {/* <CustomIframe>
-                <h1 style={{ color: "white" }}>Hello Content!</h1>
-              </CustomIframe> */}
-              <iframe src="https://bruno-simon.com/html/" />
-            </Html>
-          </primitive>
-          <Text
-            font="./bangers-v20-latin-regular.woff"
-            fontSize={1}
-            position={[2, 0.75, 0.75]}
-            rotation-y={-1.25}
-            maxWidth={2}
-            textAlign="center"
-          >
-            BRUNO SIMON
-          </Text>
-        </Float>
-      </PresentationControls>
+      {/* <OrbitControls /> */}
+
+      <primitive object={model.scene} position-y={-1.2}>
+        <Html
+          transform
+          zIndexRange={[0, 0]}
+          style={{
+            width: 1000,
+            height: 400,
+            overflow: "auto",
+          }}
+          scale={0.9}
+          distanceFactor={1.17}
+          position={[0, 1.56, -1.4]}
+          rotation-x={-0.256}
+        >
+          <MainWebpage />
+        </Html>
+      </primitive>
+
+      <mesh ref={screen} position={[0, 0.5, -2]}>
+        <planeGeometry args={[1, 1, 1]} />
+      </mesh>
 
       <ContactShadows position-y={-1.4} opacity={0.5} scale={5} blur={2.4} />
     </>

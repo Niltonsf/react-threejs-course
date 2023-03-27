@@ -1,0 +1,27 @@
+.scrollup {
+  position: fixed;
+  right: 2.5rem;
+  bottom: 3rem;
+  background-color: var(--title-color);
+  opacity: 0.8;
+  border-radius: 0.4rem;
+  z-index: 3;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  transition: 0.4s;
+}
+
+.scrollup_icon {
+  font-size: 1.5rem;
+  padding: 0.3rem 0.5rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  border-radius: 0.4rem;
+  color: var(--container-color);
+}
+
+.scrollup_icon:hover {
+  background-color: var(--title-color-dark);
+}
